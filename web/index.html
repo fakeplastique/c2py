@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>c2py</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="mark">c</span>
+    <div>
+      <h1>c2py</h1>
+      <p>C subset &rarr; AST &rarr; interpreter &amp; Python &middot; LALR(1), GNU Bison</p>
+    </div>
+  </div>
+  <div class="actions">
+    <label class="select">
+      <span class="sr">Example</span>
+      <select id="examples" aria-label="Example program"></select>
+    </label>
+    <button id="compile" class="primary" title="Ctrl+Enter">Compile &amp; Run <kbd>Ctrl ↵</kbd></button>
+  </div>
+</header>
+
+<main class="grid">
+  <section class="card editor-card">
+    <div class="card-head">
+      <h2>Source</h2>
+      <span id="status" class="pill">idle</span>
+    </div>
+    <div class="editor">
+      <div id="gutter" class="gutter" aria-hidden="true"></div>
+      <textarea id="source" spellcheck="false" autocomplete="off" aria-label="C source"></textarea>
+    </div>
+  </section>
+
+  <section class="card tree-card">
+    <div class="card-head">
+      <h2>Abstract syntax tree</h2>
+      <div class="tools">
+        <span class="legend"><i class="c-decl"></i>decl <i class="c-stmt"></i>stmt <i class="c-expr"></i>expr <i class="c-leaf"></i>leaf</span>
+        <button id="expand" class="ghost">Expand</button>
+        <button id="collapse" class="ghost">Collapse</button>
+        <button id="fit" class="ghost">Fit</button>
+      </div>
+    </div>
+    <div id="tree" class="tree"><p class="empty">Compile a program to see its tree.</p></div>
+  </section>
+
+  <section class="card out-card">
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-tab="python">Python</button>
+      <button role="tab" aria-selected="false" data-tab="interp">Output &middot; interpreter</button>
+      <button role="tab" aria-selected="false" data-tab="pyout">Output &middot; python</button>
+      <button role="tab" aria-selected="false" data-tab="errors">Errors <span id="errcount" class="count">0</span></button>
+      <span id="match" class="match"></span>
+    </div>
+    <pre id="tab-python" class="pane code" role="tabpanel"></pre>
+    <pre id="tab-interp" class="pane" role="tabpanel" hidden></pre>
+    <pre id="tab-pyout" class="pane" role="tabpanel" hidden></pre>
+    <div id="tab-errors" class="pane" role="tabpanel" hidden></div>
+  </section>
+</main>
+
+<script src="d3.v7.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
